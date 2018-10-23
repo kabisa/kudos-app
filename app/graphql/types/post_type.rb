@@ -11,8 +11,7 @@ module Types
     end
 
     field :receivers, !types[Types::UserType] do
-      preload :receivers
-      resolve ->(obj, args, ctx) { obj.receivers }
+      resolve ->(obj, args, ctx) { Util::RecordLoader.for(User).load_many(obj.receivers.ids) }
     end
   end
 end

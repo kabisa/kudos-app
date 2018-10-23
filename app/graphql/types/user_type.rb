@@ -7,14 +7,10 @@ module Types
     field :email, !types.String
 
     field :sentPosts, !types[Types::PostType] do
-      preload :sent_posts
-
-      resolve ->(obj, args, ctx) {obj.sent_posts }
+      resolve ->(obj, args, ctx) { Util::RecordLoader.for(User).load_many(obj.sent_posts.ids) }
     end
     field :receivedPosts, !types[Types::PostType] do
-      preload :received_posts
-
-      resolve ->(obj, args, ctx) {obj.received_posts }
+      resolve ->(obj, args, ctx) { Util::RecordLoader.for(User).load_many(obj.received_posts.ids) }
     end
   end
 end

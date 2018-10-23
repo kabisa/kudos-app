@@ -7,7 +7,6 @@ end
 
 gem 'graphql', '~> 1.8', '>= 1.8.10'
 gem 'graphql-batch', '~> 0.3.10'
-gem 'graphql-preload', '~> 2.0', '<= 2.0.1'
 
 gem 'httparty'
 
