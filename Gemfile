@@ -9,6 +9,8 @@ gem 'graphql', '~> 1.8', '>= 1.8.10'
 gem 'graphql-batch', '~> 0.3.10'
 gem 'graphql-preload', '~> 2.0', '<= 2.0.1'
 
+gem 'httparty'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.7'
 # Use postgresql as the database for Active Record
@@ -64,7 +66,6 @@ group :test do
   gem 'rspec-graphql_matchers', '~> 0.7.1'
   gem 'shoulda-matchers', '~> 3.1', '>= 3.1.2'
   gem 'simplecov', '~> 0.16.1', require: false
-  gem 'simplecov-console', '~> 0.4.2'
   gem 'timecop', '~> 0.9.1'
 end
 

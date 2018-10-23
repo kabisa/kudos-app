@@ -1,7 +1,7 @@
 require 'simplecov'
-require 'simplecov-console'
+require 'simplecov_badge'
 
-SimpleCov.formatter = SimpleCov::Formatter::Console
+SimpleCov.formatter = SimpleCov::Formatter::ShieldFormatter
 
 SimpleCov.start do
   add_filter '/spec'
