@@ -14,7 +14,7 @@ before_install:
   - sudo mv docker-compose /usr/local/bin
 
 script:
-  - docker-compose up --build --no-start --remove-orphans
+  - docker-compose build
   - docker-compose run backend rake db:create
   - docker-compose run backend bin/rails db:migrate RAILS_ENV=development
   - docker-compose run backend bundle exec rspec
