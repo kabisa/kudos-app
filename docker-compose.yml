@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  postgres:
+    image: postgres
+    restart: unless-stopped
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  backend:
+    build: 
+      context: .
+      dockerfile: docker/dev/Dockerfile
+    restart: unless-stopped
+    volumes:
+      - .:/code
+    ports:
+      - "3000:3000"
+    environment:
+      - DATABASE_HOST=postgres
+      - DATABASE_USERNAME=postgres
+    depends_on:
+      - postgres
+
+volumes:
+  postgres_data:
