@@ -6,3 +6,18 @@ The Kudo project originated from the wish to create common goals for people and 
 
 The Kudos-o-Matic was created to keep track of these goals and the progress towards it. 
 Users can reward each other for good deeds by giving Kudos to each other and work together to achieve common goals in the form of Kudo-thresholds.
+
+## Development
+
+To run the server (GraphQL explorer at http://localhost:3000/graphiql), run:
+
+```
+docker-compose up
+``` 
+
+To run commands in the docker container run:
+
+```
+docker-compose run backend <command>
+```
+
