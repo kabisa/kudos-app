@@ -1,24 +1,8 @@
-# README
+[![Build Status](https://travis-ci.org/kabisa/kudos-backend.png?branch=master)](https://travis-ci.org/kabisa/kudos-backend.png?branch=master)
+![Test Coverage](https://github.com/kabisa/kudos-backend/blob/master/coverage.svg)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## What is the Kudo-o-Matic?
+The Kudo project originated from the wish to create common goals for people and teams who work on different projects in order to *strengthen the team spirit*, *collectively celebrate successes* and *ensure transparency* within an organization.
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+The Kudos-o-Matic was created to keep track of these goals and the progress towards it. 
+Users can reward each other for good deeds by giving Kudos to each other and work together to achieve common goals in the form of Kudo-thresholds.
