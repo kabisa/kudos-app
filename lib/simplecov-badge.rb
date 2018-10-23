@@ -39,11 +39,7 @@ class SimpleCov::Formatter::ShieldFormatter
 
   private
   def shield_file_path
-<<<<<<< HEAD
     "coverage.svg"
-=======
-    "#{SimpleCov.coverage_path}/coverage.svg"
->>>>>>> e89f765d256a96166dcfad9076ba0791853c36b8
   end
 
   def color
