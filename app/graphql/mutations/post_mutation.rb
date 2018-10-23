@@ -17,6 +17,7 @@ module Mutations
           raise GraphQL::ExecutionError.new("Authentication required")
         end
 
+        # create a post or raises an ActiveRecord::RecordInvalid exception if creation fails
         post = Post.create!(
           message: args[:message],
           kudos: args[:kudos],
