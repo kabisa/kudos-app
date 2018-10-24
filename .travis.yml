@@ -31,19 +31,13 @@ before_install:
 
 jobs:
   include:
-    - stage: Build
+    - stage: Test
       script:
         - docker-compose build
-    - stage: Lint Frontend
-      script:
         - docker-compose run frontend npm run prettier:check
         - docker-compose run frontend npm run eslint
         - docker-compose run frontend npm run stylelint
-    - stage: Compile Frontend
-      script:
         - docker-compose run frontend npm run build
-    - stage: Test Backend
-      script:
         - docker-compose run backend rake db:create
         - docker-compose run backend bin/rails db:migrate RAILS_ENV=development
         - docker-compose run backend bundle exec rspec
