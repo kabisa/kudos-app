@@ -7,6 +7,9 @@ services:
 env:
   - DOCKER_COMPOSE_VERSION=1.22.0
 
+git:
+  depth: false
+
 before_install:
   - sudo rm /usr/local/bin/docker-compose
   - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
@@ -15,6 +18,11 @@ before_install:
 
 script:
   - docker-compose build
+  - docker-compose run frontend npm run prettier:check
+  - docker-compose run frontend npm run eslint
+  - docker-compose run frontend npm run stylelint
+  - docker-compose run frontend npm run build
+
   - docker-compose run backend rake db:create
   - docker-compose run backend bin/rails db:migrate RAILS_ENV=development
   - docker-compose run backend bundle exec rspec

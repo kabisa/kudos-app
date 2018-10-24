@@ -1,5 +1,5 @@
 /* eslint no-underscore-dangle: 0 */
-import { createStore, combineReducers, applyMiddleware, compose } from "redux";
+import { createStore, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 import freeze from "redux-freeze";
 
