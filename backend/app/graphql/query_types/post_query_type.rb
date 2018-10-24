@@ -3,10 +3,11 @@ module QueryTypes
     name 'PostQueryType'
     description 'The post query type'
 
-    field :posts, !types[Types::PostType] do
+    connection :postsConnection, Connections::PostsConnection do
       description 'Retrieve all posts'
+      argument :orderBy, types.String, 'Column to order the results by', as: :order_by, default_value: 'created_at desc'
 
-      resolve ->(obj, args, ctx) { Post.all }
+      resolve ->(obj, args, ctx) { Post.all.order(args[:order_by]) }
     end
 
     field :post, Types::PostType do
