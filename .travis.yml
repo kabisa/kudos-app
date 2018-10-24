@@ -15,6 +15,7 @@ before_install:
 
 script:
   - docker-compose build
+  - docker-compose run backend rubocop
   - docker-compose run backend rake db:create
   - docker-compose run backend bin/rails db:migrate RAILS_ENV=development
   - docker-compose run backend bundle exec rspec

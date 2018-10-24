@@ -46,6 +46,7 @@ group :development, :test do
   gem 'database_cleaner', '~> 1.7'
   gem 'faker', '~> 1.9', '>= 1.9.1'
   gem 'pry', '~> 0.11.3'
+  gem 'rubocop'
 end
 
 group :development do
