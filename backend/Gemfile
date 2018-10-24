@@ -45,6 +45,7 @@ group :development, :test do
   gem 'dotenv-rails', '~> 2.5'
   gem 'faker', '~> 1.9', '>= 1.9.1'
   gem 'pry', '~> 0.11.3'
+  gem 'rubocop'
 end
 
 group :development do
