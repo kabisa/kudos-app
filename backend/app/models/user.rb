@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
   has_secure_password
 
@@ -5,8 +7,8 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true
 
   has_many :sent_posts,
-           class_name: 'Post',
-           foreign_key: 'sender_id',
+           class_name: "Post",
+           foreign_key: "sender_id",
            dependent: :destroy
 
   has_many :post_receivers,

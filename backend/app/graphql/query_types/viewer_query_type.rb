@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 module QueryTypes
   ViewerQueryType = GraphQL::ObjectType.define do
-    name 'ViewerQueryType'
-    description 'The viewer query type'
+    name "ViewerQueryType"
+    description "The viewer query type"
 
     field :viewer, Types::ViewerType, "Viewer of data, current user" do
       resolve ->(_object, _args, context) do

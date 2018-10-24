@@ -1,12 +1,14 @@
-require 'database_cleaner'
+# frozen_string_literal: true
+
+require "database_cleaner"
 
 DatabaseCleaner.clean_with(:truncation)
 
 5.times do |i|
   User.create(name: Faker::Name.first_name,
               email: Faker::Internet.email,
-              password: 'fakepassword',
-              password_confirmation: 'fakepassword'
+              password: "fakepassword",
+              password_confirmation: "fakepassword"
   )
 end
 

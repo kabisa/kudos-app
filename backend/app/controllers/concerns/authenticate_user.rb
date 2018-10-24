@@ -1,4 +1,6 @@
-require 'auth_token'
+# frozen_string_literal: true
+
+require "auth_token"
 
 module AuthenticateUser
   Error = Class.new(RuntimeError)
@@ -17,7 +19,7 @@ module AuthenticateUser
   end
 
   def authenticate!
-    if auth_header.blank? || auth_header == 'null'
+    if auth_header.blank? || auth_header == "null"
       @current_user = nil
       return true
     end
@@ -33,26 +35,25 @@ module AuthenticateUser
 
   private
 
-  def auth_header
-    @_auth_header ||= request.headers["Authorization"]
-  end
-
-  def auth_token
-    @_auth_token ||= auth_header.split(" ")[1].tap do |t|
-      raise InvalidHeader.new "missing token" if t.nil?
+    def auth_header
+      @_auth_header ||= request.headers["Authorization"]
     end
-  end
 
-  def auth_payload
-    @_auth_payload ||= AuthToken.new.verify(auth_token)
-  end
+    def auth_token
+      @_auth_token ||= auth_header.split(" ")[1].tap do |t|
+        raise InvalidHeader.new "missing token" if t.nil?
+      end
+    end
 
-  def auth_ok?
-    !! auth_payload.dig(:ok)
-  end
+    def auth_payload
+      @_auth_payload ||= AuthToken.new.verify(auth_token)
+    end
 
-  def auth_expired?
-    !! (auth_payload.dig(:error) == :token_expired)
-  end
+    def auth_ok?
+      !! auth_payload.dig(:ok)
+    end
 
+    def auth_expired?
+      !! (auth_payload.dig(:error) == :token_expired)
+    end
 end

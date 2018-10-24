@@ -1,14 +1,16 @@
-require 'simplecov'
-require 'httparty'
+# frozen_string_literal: true
+
+require "simplecov"
+require "httparty"
 
 class SimpleCov::Formatter::ShieldFormatter
-  SHIELD_ROOT = 'http://img.shields.io/badge'
-  STYLES = ['flat']
+  SHIELD_ROOT = "http://img.shields.io/badge"
+  STYLES = ["flat"]
 
   @config = {
-      :badge_name => 'coverage',
-      :precision => 0,
-      :style => nil,
+      badge_name: "coverage",
+      precision: 0,
+      style: nil,
   }
 
   def format(result)
@@ -17,7 +19,7 @@ class SimpleCov::Formatter::ShieldFormatter
   end
 
   def generate_shield
-    File.open(shield_file_path, 'w') do |file|
+    File.open(shield_file_path, "w") do |file|
       file.write HTTParty.get(shield_url).parsed_response
     end
   end
@@ -33,27 +35,27 @@ class SimpleCov::Formatter::ShieldFormatter
     @coverage_percent ||= @result.covered_percent.round(precision)
   end
 
-  def self.config
-    @config
+  class << self
+    attr_reader :config
   end
 
   private
-  def shield_file_path
-    "lib/assets/coverage.svg"
-  end
-
-  def color
-    case coverage_percent
-    when 90..100
-      'brightgreen'
-    when 80..89
-      'yellow'
-    else
-      'red'
+    def shield_file_path
+      "lib/assets/coverage.svg"
     end
-  end
 
-  @config.each do |key, val|
-    define_method(key) { self.class.config[key] }
-  end
+    def color
+      case coverage_percent
+      when 90..100
+        "brightgreen"
+      when 80..89
+        "yellow"
+      else
+        "red"
+      end
+    end
+
+    @config.each do |key, val|
+      define_method(key) { self.class.config[key] }
+    end
 end
