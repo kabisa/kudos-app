@@ -15,9 +15,6 @@ services:
       - ./backend:/code
     ports:
       - "3000:3000"
-    environment:
-      - DATABASE_HOST=postgres
-      - DATABASE_USERNAME=postgres
     depends_on:
       - postgres
 
