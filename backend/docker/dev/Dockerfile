@@ -11,7 +11,6 @@ RUN bundle install
 
 COPY . .
 
-
 CMD rm -f tmp/pids/server.pid && \
     rake db:create && \
     bin/rails db:migrate RAILS_ENV=development && \

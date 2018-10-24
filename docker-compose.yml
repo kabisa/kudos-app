@@ -21,5 +21,18 @@ services:
     depends_on:
       - postgres
 
+  frontend:
+    build:
+      context: frontend
+      dockerfile: docker/dev/Dockerfile
+    volumes:
+      - ./frontend:/code
+      - node_modules:/code/node_modules
+    ports:
+      - "9090:9090"
+    environment:
+      - NODE_ENV=development
+
 volumes:
   postgres_data:
+  node_modules:
