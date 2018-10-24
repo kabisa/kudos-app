@@ -5,18 +5,6 @@ RSpec.describe QueryTypes::PostQueryType do
   let!(:users) { create_list(:user, 3) }
   let!(:posts) { create_list(:post, 3, sender: users.first, receivers: [users.second, users.last]) }
 
-  describe 'querying a specific post by id' do
-    it 'returns the queried post' do
-      # set the id of the first post as the ID
-      id = posts.first.id
-      args = { id: id }
-      query_result = subject.fields['post'].resolve(nil, args, nil)
-
-      # we should only get the first user from the db.
-      expect(query_result).to eq(posts.first)
-    end
-  end
-
   describe 'querying all posts' do
 
     it 'has a :posts that returns a Post type' do
@@ -33,6 +21,15 @@ RSpec.describe QueryTypes::PostQueryType do
 
       # we can also check that the number of lists returned is the one we created.
       expect(query_result.count).to eq(posts.count)
+    end
+  end
+
+  describe 'querying a specific post by id' do
+    it 'returns the queried post' do
+      id = posts.first.id
+      args = { id: id }
+      query_result = Functions::FindById.new(Post).call(nil, args, nil)
+      expect(query_result).to eq(posts.first)
     end
   end
 end
