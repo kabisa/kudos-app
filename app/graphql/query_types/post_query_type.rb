@@ -9,11 +9,7 @@ module QueryTypes
       resolve ->(obj, args, ctx) { Post.all }
     end
 
-    field :post, Types::PostType do
-      description 'Retrieve a post by id'
-
-      argument :id, types.ID, 'The ID of the post to retrieve'
-      resolve ->(obj, args, ctx) { Post.find(args[:id]) }
-    end
+    # find post by id
+    field :post, Types::PostType, function: Functions::FindById.new(Post)
   end
 end

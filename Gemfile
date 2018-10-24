@@ -37,13 +37,12 @@ gem 'jbuilder', '~> 2.5'
 gem 'bcrypt', '~> 3.1.7'
 gem 'json_web_token', '~> 0.3.5'
 
-gem 'dotenv', '~> 2.5'
-
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
 group :development, :test do
   gem 'database_cleaner', '~> 1.7'
+  gem 'dotenv-rails', '~> 2.5'
   gem 'faker', '~> 1.9', '>= 1.9.1'
   gem 'pry', '~> 0.11.3'
 end
