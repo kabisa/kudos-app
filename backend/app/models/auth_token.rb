@@ -5,7 +5,7 @@ require "json_web_token"
 class AuthToken
   def initialize
     @sekrit = Rails.application.secrets.secret_key_base
-    @expiry_hours = 24.hours
+    @expiry_hours = 5.years
   end
 
   def token(user)
