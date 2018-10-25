@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 module Types
   PostReceiverType = GraphQL::ObjectType.define do
-    name 'PostReceiver'
+    name "PostReceiver"
 
     field :id, !types.ID
 

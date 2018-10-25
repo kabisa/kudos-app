@@ -1,12 +1,14 @@
-require 'simplecov'
-require 'simplecov_badge'
+# frozen_string_literal: true
+
+require "simplecov"
+require "simplecov_badge"
 
 SimpleCov.formatter = SimpleCov::Formatter::ShieldFormatter
 
 SimpleCov.start do
-  add_filter '/spec'
-  add_filter '/config'
-  add_filter '/controllers/graphql_controller.rb'
+  add_filter "/spec"
+  add_filter "/config"
+  add_filter "/controllers/graphql_controller.rb"
   add_filter do |source_file|
     source_file.lines.count < 5
   end

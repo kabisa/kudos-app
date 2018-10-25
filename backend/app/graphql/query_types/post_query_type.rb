@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 module QueryTypes
   PostQueryType = GraphQL::ObjectType.define do
-    name 'PostQueryType'
-    description 'The post query type'
+    name "PostQueryType"
+    description "The post query type"
 
     field :posts, !types[Types::PostType] do
-      description 'Retrieve all posts'
+      description "Retrieve all posts"
 
       resolve ->(obj, args, ctx) { Post.all }
     end

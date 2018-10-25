@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe QueryTypes::UserQueryType do
   # avail type definer in our tests
   types = GraphQL::Define::TypeDefiner.instance
@@ -9,8 +11,8 @@ RSpec.describe QueryTypes::UserQueryType do
       expect(subject).to have_field(:users).that_returns(!types[Types::UserType])
     end
 
-    it 'returns all our created users' do
-      query_result = subject.fields['users'].resolve(nil, nil, nil)
+    it "returns all our created users" do
+      query_result = subject.fields["users"].resolve(nil, nil, nil)
 
       # ensure that each of our users is returned
       users.each do |user|

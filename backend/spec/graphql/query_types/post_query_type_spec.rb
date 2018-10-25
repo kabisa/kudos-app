@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe QueryTypes::PostQueryType do
   # avail type definer in our tests
   types = GraphQL::Define::TypeDefiner.instance
@@ -6,13 +8,12 @@ RSpec.describe QueryTypes::PostQueryType do
   let!(:posts) { create_list(:post, 3, sender: users.first, receivers: [users.second, users.last]) }
 
   describe 'querying all posts' do
-
     it 'has a :posts that returns a Post type' do
       expect(subject).to have_field(:posts).that_returns(!types[Types::PostType])
     end
 
-    it 'returns all our created posts' do
-      query_result = subject.fields['posts'].resolve(nil, nil, nil)
+    it "returns all our created posts" do
+      query_result = subject.fields["posts"].resolve(nil, nil, nil)
 
       # ensure that each of our posts is returned
       posts.each do |post|

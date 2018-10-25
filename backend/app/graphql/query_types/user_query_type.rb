@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 module QueryTypes
   UserQueryType = GraphQL::ObjectType.define do
-    name 'UserQueryType'
-    description 'The user query type'
+    name "UserQueryType"
+    description "The user query type"
 
     field :users, !types[Types::UserType] do
-      description 'Retrieve all users'
+      description "Retrieve all users"
       resolve ->(obj, args, ctx) {
         User.all
       }
