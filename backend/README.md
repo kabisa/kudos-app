@@ -14,7 +14,7 @@ To run the server (GraphQL explorer at http://localhost:3000/graphql/playground)
 ### Docker
 
 ```
-docker-compose up
+docker-compose up --build
 ``` 
 
 To run commands in the docker container run:
