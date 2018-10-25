@@ -39,6 +39,7 @@ gem "settingslogic", "~> 2.0", ">= 2.0.9"
 # gem 'capistrano-rails', group: :development
 
 group :development, :test do
+  gem "graphdoc-ruby", "~> 0.1.0"
   gem "database_cleaner", "~> 1.7"
   gem "dotenv-rails", "~> 2.5"
   gem "faker", "~> 1.9", ">= 1.9.1"

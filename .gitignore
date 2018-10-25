@@ -327,6 +327,7 @@ fastlane/readme.md
 /test/tmp/
 /test/version_tmp/
 tmp/
+schema.json
 
 # Used by dotenv library to load environment variables.
 # .env
