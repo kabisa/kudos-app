@@ -6,8 +6,8 @@ RSpec.describe QueryTypes::UserQueryType do
 
   let!(:users) { create_list(:user, 3) }
 
-  describe 'querying all users' do
-    it 'has a :users that returns a User type' do
+  describe "querying all users" do
+    it "has a :users that returns a User type" do
       expect(subject).to have_field(:users).that_returns(!types[Types::UserType])
     end
 
@@ -24,8 +24,8 @@ RSpec.describe QueryTypes::UserQueryType do
     end
   end
 
-  describe 'querying a specific user by id' do
-    it 'returns the queried user' do
+  describe "querying a specific user by id" do
+    it "returns the queried user" do
       id = users.first.id
       args = { id: id }
       query_result = Functions::FindById.new(User).call(nil, args, nil)

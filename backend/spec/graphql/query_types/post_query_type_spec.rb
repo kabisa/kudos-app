@@ -7,8 +7,8 @@ RSpec.describe QueryTypes::PostQueryType do
   let!(:users) { create_list(:user, 3) }
   let!(:posts) { create_list(:post, 3, sender: users.first, receivers: [users.second, users.last]) }
 
-  describe 'querying all posts' do
-    it 'has a :posts that returns a Post type' do
+  describe "querying all posts" do
+    it "has a :posts that returns a Post type" do
       expect(subject).to have_field(:posts).that_returns(!types[Types::PostType])
     end
 
@@ -25,8 +25,8 @@ RSpec.describe QueryTypes::PostQueryType do
     end
   end
 
-  describe 'querying a specific post by id' do
-    it 'returns the queried post' do
+  describe "querying a specific post by id" do
+    it "returns the queried post" do
       id = posts.first.id
       args = { id: id }
       query_result = Functions::FindById.new(Post).call(nil, args, nil)
