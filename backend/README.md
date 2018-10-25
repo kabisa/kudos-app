@@ -9,10 +9,12 @@ Users can reward each other for good deeds by giving Kudos to each other and wor
 
 ## Development
 
-To run the server (GraphQL explorer at http://localhost:3000/graphiql), run:
+To run the server (GraphQL explorer at http://localhost:3000/graphql/playground)
+
+### Docker
 
 ```
-docker-compose up
+docker-compose up --build
 ``` 
 
 To run commands in the docker container run:
@@ -21,3 +23,14 @@ To run commands in the docker container run:
 docker-compose run backend <command>
 ```
 
+### Local
+
+```
+rails s
+``` 
+
+To run commands
+
+```
+rails <command>
+```
