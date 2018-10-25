@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 module Mutations
   UserMutation = GraphQL::ObjectType.define do
-    name 'UserMutation'
-    description 'All user related mutations'
+    name "UserMutation"
+    description "All user related mutations"
 
     field :createUser, Types::UserType do
-      description 'Create a new user'
+      description "Create a new user"
       argument :name, !types.String
       argument :authProvider, !Types::AuthProviderSignupData
 
@@ -27,7 +29,7 @@ module Mutations
     end
 
     field :signInUser, Types::UserType do
-      description 'Sign in a user'
+      description "Sign in a user"
       # define the arguments this field will receive
       argument :credentials, !Types::AuthProviderEmailInput
 

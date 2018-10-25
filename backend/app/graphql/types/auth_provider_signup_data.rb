@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 module Types
   AuthProviderSignupData = GraphQL::InputObjectType.define do
-    name 'AuthProviderSignupData'
+    name "AuthProviderSignupData"
 
     argument :credentials, Types::AuthProviderEmailInput
   end

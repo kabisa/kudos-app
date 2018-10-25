@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe QueryTypes::PostQueryType do
   # avail type definer in our tests
   types = GraphQL::Define::TypeDefiner.instance
@@ -13,7 +15,7 @@ RSpec.describe QueryTypes::PostQueryType do
     it 'returns the queried post' do
       id = posts.first.id
       args = { id: id }
-      query_result = subject.fields['post'].resolve(nil, args, nil)
+      query_result = subject.fields["post"].resolve(nil, args, nil)
 
       expect(query_result).to eq(posts.first)
     end
@@ -24,7 +26,6 @@ RSpec.describe QueryTypes::PostQueryType do
   end
 
   describe 'querying all posts' do
-
     it 'has :postsConnection field that returns a Post type' do
       expect(subject).to have_field(:postsConnection).that_returns(Connections::PostsConnection)
     end

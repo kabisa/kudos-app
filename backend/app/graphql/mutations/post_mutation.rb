@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 module Mutations
   PostMutation = GraphQL::ObjectType.define do
-    name 'PostMutation'
-    description 'All post related mutations'
+    name "PostMutation"
+    description "All post related mutations"
 
     field :createPost, Types::PostType do
-      description 'Create a new post'
+      description "Create a new post"
       argument :message, !types.String
       argument :kudos, !types.Int
       argument :receivers, !types[types.String]

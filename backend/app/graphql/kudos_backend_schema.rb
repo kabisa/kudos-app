@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 KudosBackendSchema = GraphQL::Schema.define do
   use GraphQL::Batch
 

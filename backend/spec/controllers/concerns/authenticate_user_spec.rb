@@ -1,5 +1,7 @@
-require 'auth_token'
-require 'ostruct'
+# frozen_string_literal: true
+
+require "auth_token"
+require "ostruct"
 
 class FakeController
   include AuthenticateUser
@@ -24,7 +26,7 @@ RSpec.describe "AuthenticateUser Concern" do
   end
 
   it "can authenticate" do
-    subject.request.headers['Authorization'] = "Bearer #{token}"
+    subject.request.headers["Authorization"] = "Bearer #{token}"
     expect(subject.authenticate!).to be_truthy
     expect(subject.current_user).to eq(user)
   end
@@ -35,18 +37,18 @@ RSpec.describe "AuthenticateUser Concern" do
   end
 
   it "raises InvalidHeader when no actual token present" do
-    subject.request.headers['Authorization'] = 'Bearer'
+    subject.request.headers["Authorization"] = "Bearer"
     expect { subject.authenticate! }.to raise_error(AuthenticateUser::InvalidHeader)
   end
 
   it "raises Error when given a bad token" do
-    subject.request.headers['Authorization'] = 'Bearer bad-token'
+    subject.request.headers["Authorization"] = "Bearer bad-token"
     expect { subject.authenticate! }.to raise_error(AuthenticateUser::Error)
   end
 
   it "raises TokenExpired when token is out of date" do
-    allow_any_instance_of(AuthToken).to receive(:verify).and_return({error: :token_expired})
-    subject.request.headers['Authorization'] = "Bearer #{token}"
+    allow_any_instance_of(AuthToken).to receive(:verify).and_return(error: :token_expired)
+    subject.request.headers["Authorization"] = "Bearer #{token}"
 
     expect { subject.authenticate! }.to raise_error(AuthenticateUser::TokenExpired)
   end
