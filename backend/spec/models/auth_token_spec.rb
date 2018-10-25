@@ -29,7 +29,7 @@ RSpec.describe AuthToken, type: :model do
     context "when token has expired" do
       it "payload is an error" do
         token = subject.token(user)
-        Timecop.freeze(Time.now + 2.days) do
+        Timecop.freeze(1.month.from_now) do
           expect(subject.verify(token).dig(:ok)).not_to be_truthy
         end
       end

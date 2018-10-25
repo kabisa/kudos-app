@@ -34,6 +34,7 @@ gem "jbuilder", "~> 2.5"
 gem "bcrypt", "~> 3.1.7"
 gem "json_web_token", "~> 0.3.5"
 gem "settingslogic", "~> 2.0", ">= 2.0.9"
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
@@ -47,7 +48,6 @@ end
 
 group :development do
   gem "graphql_playground-rails", "~> 2.0", ">= 2.0.1"
-  gem "graphiql-rails", "~> 1.4", ">= 1.4.11"
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem "web-console", ">= 3.3.0"
   gem "listen", "~> 3.0.5"
