@@ -26,7 +26,7 @@ Post.create(
   kudos: rand(1..500)
 )
 
-10.times do |i|
+100.times do |i|
   Post.create(
     sender: User.second,
     receivers: User.last(3),
