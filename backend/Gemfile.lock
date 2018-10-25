@@ -74,9 +74,10 @@ GEM
     ffi (1.9.25)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
-    graphiql-rails (1.4.11)
-      railties
-      sprockets-rails
+    graphdoc-ruby (0.1.0)
+      activesupport (>= 4.2.0)
+      bundler
+      rack
     graphql (1.8.11)
     graphql-batch (0.3.10)
       graphql (>= 0.8, < 2)
@@ -253,7 +254,7 @@ DEPENDENCIES
   dotenv-rails (~> 2.5)
   factory_bot_rails (~> 4.8, >= 4.8.2)
   faker (~> 1.9, >= 1.9.1)
-  graphiql-rails (~> 1.4, >= 1.4.11)
+  graphdoc-ruby (~> 0.1.0)
   graphql (~> 1.8, >= 1.8.10)
   graphql-batch (~> 0.3.10)
   graphql_playground-rails (~> 2.0, >= 2.0.1)
