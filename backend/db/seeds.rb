@@ -28,9 +28,9 @@ Post.create(
 
 10.times do |i|
   Post.create(
-      sender: User.second,
-      receivers: User.last(3),
-      message: Faker::Company.bs,
-      kudos: rand(1..500)
+    sender: User.second,
+    receivers: User.last(3),
+    message: Faker::Company.bs,
+    kudos: rand(1..500)
   )
 end
