@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Util
   class FieldCombiner
     def self.combine(query_types)

@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :post do
-    sender {}
-    receivers {[]}
+    sender { }
+    receivers { [] }
     message { Faker::Company.bs }
     kudos { rand(1..500) }
   end

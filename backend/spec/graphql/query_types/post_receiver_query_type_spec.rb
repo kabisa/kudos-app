@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe QueryTypes::PostReceiverQueryType do
   # avail type definer in our tests
   types = GraphQL::Define::TypeDefiner.instance
@@ -5,14 +7,13 @@ RSpec.describe QueryTypes::PostReceiverQueryType do
   let!(:users) { create_list(:user, 3) }
   let!(:posts) { create_list(:post, 3, sender: users.first, receivers: [users.second, users.last]) }
 
-  describe 'querying all posts receivers' do
-
-    it 'has a :posts_receivers that returns a PostReceiver type' do
+  describe "querying all posts receivers" do
+    it "has a :posts_receivers that returns a PostReceiver type" do
       expect(subject).to have_field(:postReceivers).that_returns(!types[Types::PostReceiverType])
     end
 
-    it 'returns all our created posts' do
-      query_result = subject.fields['postReceivers'].resolve(nil, nil, nil)
+    it "returns all our created posts" do
+      query_result = subject.fields["postReceivers"].resolve(nil, nil, nil)
       post_receivers = PostReceiver.all
 
       # ensure that each of our postreceivers is returned
