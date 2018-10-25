@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'graphlient'
+require "graphlient"
 
 RSpec.describe Connections::PostsConnection do
   # avail type definer in our tests

@@ -4,7 +4,7 @@ require "database_cleaner"
 
 DatabaseCleaner.clean_with(:truncation)
 
-5.times do |i|
+10.times do |i|
   User.create(name: Faker::Name.first_name,
               email: Faker::Internet.email,
               password: "fakepassword",
@@ -12,24 +12,12 @@ DatabaseCleaner.clean_with(:truncation)
   )
 end
 
-Post.create(
-  sender: User.first,
-  receivers: [User.last],
-  message: Faker::Company.bs,
-  kudos: rand(1..500)
-)
-
-Post.create(
-  sender: User.second,
-  receivers: User.last(2),
-  message: Faker::Company.bs,
-  kudos: rand(1..500)
-)
-
 100.times do |i|
+  sender = User.offset(rand(User.count)).first
+
   Post.create(
-    sender: User.second,
-    receivers: User.last(3),
+    sender: sender,
+    receivers: User.limit(rand(1..5)).order("RANDOM()").where.not(id: sender.id),
     message: Faker::Company.bs,
     kudos: rand(1..500)
   )
