@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'active_record'
+require "active_record"
 require "graphlient"
 
 RSpec.shared_context "Graphql Client", shared_context: :metadata do
