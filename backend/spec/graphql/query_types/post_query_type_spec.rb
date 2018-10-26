@@ -32,14 +32,14 @@ RSpec.describe QueryTypes::PostQueryType do
     it "has :post that returns a Post type" do
       expect(subject).to have_field(:post).that_returns(Types::PostType)
     end
-    
+
     it "returns the queried post" do
       id = posts.first.id
       args = { id: id }
       query_result = Functions::FindById.new(Post).call(nil, args, nil)
       expect(query_result).to eq(posts.first)
     end
-    
+
     it "accepts an id argument, of type Int" do
       expect(subject.fields["post"]).to accept_arguments(id: types.ID)
     end
