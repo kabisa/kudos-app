@@ -8,15 +8,29 @@ services:
       - postgres_data:/var/lib/postgresql/data
 
   backend:
+    restart: unless-stopped
     build: 
       context: backend
       dockerfile: docker/dev/Dockerfile
     volumes:
       - ./backend:/code
+      - bundle:/bundle
+      - docs:/docs
     ports:
       - "3000:3000"
     depends_on:
       - postgres
+
+  documentation:
+    build:
+      context: backend
+      dockerfile: docker/docs/Dockerfile
+    volumes:
+      - docs:/usr/share/nginx/html
+    ports:
+      - "9000:80"
+    depends_on:
+      - backend
 
   frontend:
     build:
@@ -33,3 +47,5 @@ services:
 volumes:
   postgres_data:
   node_modules:
+  bundle:
+  docs:

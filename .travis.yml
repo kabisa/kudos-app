@@ -25,8 +25,8 @@ jobs:
         - docker-compose run frontend npm run eslint
         - docker-compose run frontend npm run stylelint
         - docker-compose run frontend npm run build
-        - docker-compose run backend rubocop
-        - docker-compose run backend rake db:create
+        - docker-compose run backend bundle exec rubocop
+        - docker-compose run backend bundle exec rake db:create
         - docker-compose run backend bin/rails db:migrate RAILS_ENV=development
         - docker-compose run backend bundle exec rspec
 

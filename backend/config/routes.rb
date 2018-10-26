@@ -3,6 +3,7 @@
 Rails.application.routes.draw do
   if Rails.env.development?
     mount GraphqlPlayground::Rails::Engine, at: "/graphql/playground", graphql_path: "/graphql"
+    mount GraphdocRuby::Application, at: "/graphdoc"
   end
 
   post "/graphql", to: "graphql#execute"
