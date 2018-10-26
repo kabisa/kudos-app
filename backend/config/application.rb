@@ -25,7 +25,6 @@ module KudosBackend
                  headers: :any,
                  methods: [:get, :post, :options],
                  credentials: true
-        # expose: ["Access-Control-Allow-Credentials: true"]
       end
     end
   end

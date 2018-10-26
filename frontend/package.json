@@ -26,13 +26,12 @@
     ]
   },
   "dependencies": {
+    "apollo-boost": "^0.1.17",
     "axios": "^0.18.0",
     "fastclick": "^1.0.6",
     "graphql": "^14.0.2",
     "graphql-tag": "^2.10.0",
     "history": "^4.6.3",
-    "lokka": "^1.7.0",
-    "lokka-transport-http": "^1.6.1",
     "maji": "3.3.0",
     "moment": "^2.22.2",
     "moment-twitter": "^0.2.0",
@@ -42,6 +41,7 @@
     "preact-router": "^2.5.2",
     "prop-types": "^15.6.2",
     "raven-js": "^3.17.0",
+    "react-apollo": "^2.2.4",
     "redux": "^3.7.2",
     "redux-freeze": "^0.1.7",
     "redux-thunk": "^2.3.0",

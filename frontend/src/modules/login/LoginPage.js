@@ -1,0 +1,136 @@
+import { h, Component } from "preact";
+import {
+  Button,
+  Form,
+  Grid,
+  Header,
+  Message,
+  Segment,
+} from "semantic-ui-react";
+import { route } from "preact-router";
+import gql from "graphql-tag";
+import { Mutation } from "react-apollo";
+
+import { PATH_REGISTER, PATH_FORGOT_PASSWORD, PATH_FEED } from "../../routes";
+import settings from "../../config/settings";
+
+import s from "./style.scss";
+
+const MUTATION_LOGIN = gql`
+  mutation SignInUser($email: String!, $password: String!) {
+    signInUser(credentials: { email: $email, password: $password }) {
+      token
+    }
+  }
+`;
+
+class LoginPage extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      email: "",
+      password: "",
+    };
+  }
+
+  _handleChange(e, { name, value }) {
+    this.setState({ [name]: value });
+  }
+
+  _confirm(data) {
+    if (data.signInUser) {
+      this._saveUserData(data.signInUser.token);
+      route(PATH_FEED, true);
+    }
+  }
+
+  _saveUserData(token) {
+    localStorage.setItem(settings.LOCALSTORAGE_TOKEN, token);
+  }
+
+  _formSubmit(e, signInUser) {
+    e.preventDefault();
+    const { email, password } = this.state;
+    signInUser({
+      variables: { email, password },
+    });
+  }
+
+  render() {
+    return (
+      <Mutation
+        mutation={MUTATION_LOGIN}
+        onCompleted={data => this._confirm(data)}
+      >
+        {(signInUser, { data }) => {
+          return (
+            <div className="main-form">
+              <Grid
+                textAlign="center"
+                className={s.grid}
+                verticalAlign="middle"
+              >
+                <Grid.Column className={s.column}>
+                  <Header as="h2" color="blue" textAlign="center">
+                    Log-in to your account
+                  </Header>
+                  <Form
+                    size="large"
+                    error
+                    onSubmit={e => this._formSubmit(e, signInUser)}
+                  >
+                    <Segment stacked>
+                      <Form.Input
+                        fluid
+                        icon="user"
+                        name="email"
+                        iconPosition="left"
+                        placeholder="E-mail address"
+                        autoFocus="on"
+                        onChange={this.handleChange}
+                      />
+                      <Form.Input
+                        fluid
+                        icon="lock"
+                        name="password"
+                        iconPosition="left"
+                        placeholder="Password"
+                        type="password"
+                        onChange={this.handleChange}
+                      />
+
+                      <Button color="blue" fluid size="large">
+                        Login
+                      </Button>
+
+                      {data &&
+                        data.signInUser === null && (
+                          <Message
+                            error={true}
+                            header="Unable to login"
+                            content="Please make sure you entered your credentials correctly."
+                          />
+                        )}
+                    </Segment>
+                  </Form>
+                  <Message>
+                    <div className={s.message}>
+                      <a href={PATH_REGISTER} className={s.left}>
+                        Sign Up
+                      </a>
+                      <a href={PATH_FORGOT_PASSWORD} className={s.right}>
+                        Forgot password?
+                      </a>
+                    </div>
+                  </Message>
+                </Grid.Column>
+              </Grid>
+            </div>
+          );
+        }}
+      </Mutation>
+    );
+  }
+}
+export default LoginPage;
