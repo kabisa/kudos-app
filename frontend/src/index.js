@@ -1,14 +1,13 @@
-import "./styles/shell.scss";
 import { h, render } from "preact";
-import FastClick from "fastclick";
 import { route } from "preact-router";
 import { ApolloProvider } from "react-apollo";
 import client from "./apollo";
 
 import "src/config/sentry";
 import settings from "./config/settings";
-
 import { PATH_LOGIN } from "./routes";
+
+import "./styles/shell.scss";
 
 const renderApp = function() {
   const App = require("./App").default;
@@ -16,27 +15,21 @@ const renderApp = function() {
 
   // Check for user token
   const token = localStorage.getItem(settings.LOCALSTORAGE_TOKEN);
-  // if (token) {
-  //   store.dispatch(setToken(token));
-  //   store.dispatch(getUserInfo());
-  // } else {
-  //   if (!window.location.href.includes(`#${PATH_LOGIN}`)) {
-  //     route(PATH_LOGIN);
-  //   }
-  // }
+  if (!token) {
+    if (!window.location.href.includes(`#${PATH_LOGIN}`)) {
+      route(PATH_LOGIN, true);
+    }
+  }
 
   root.innerHTML = "";
   render(
     <ApolloProvider client={client}>
-      {/* <Provider store={store}> */}
       <App />
-      {/* </Provider> */}
     </ApolloProvider>,
     root
   );
 };
 
-FastClick.attach(document.body);
 renderApp();
 
 if (process.env.NODE_ENV !== "production") {

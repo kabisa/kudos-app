@@ -9,25 +9,14 @@ import {
   Responsive,
 } from "semantic-ui-react";
 import { route } from "preact-router";
-import gql from "graphql-tag";
 import { Mutation } from "react-apollo";
 
 import { PATH_FEED } from "../../routes";
 import { Toolbar } from "../../components/navigation";
 import settings from "../../config/settings";
+import { MUTATION_REGISTER } from "./queries";
 
 import s from "./style.scss";
-
-const MUTATION_REGISTER = gql`
-  mutation CreateUser($name: String!, $email: String!, $password: String!) {
-    createUser(
-      name: $name
-      authProvider: { credentials: { email: $email, password: $password } }
-    ) {
-      token
-    }
-  }
-`;
 
 class ForgotPasswordPage extends Component {
   constructor(props) {

@@ -8,30 +8,32 @@ import {
   Segment,
 } from "semantic-ui-react";
 import { route } from "preact-router";
-import gql from "graphql-tag";
 import { Mutation } from "react-apollo";
 
+import { MUTATION_LOGIN } from "./queries";
 import { PATH_REGISTER, PATH_FORGOT_PASSWORD, PATH_FEED } from "../../routes";
 import settings from "../../config/settings";
+import { isLoggedIn } from "../../support";
 
 import s from "./style.scss";
-
-const MUTATION_LOGIN = gql`
-  mutation SignInUser($email: String!, $password: String!) {
-    signInUser(credentials: { email: $email, password: $password }) {
-      token
-    }
-  }
-`;
 
 class LoginPage extends Component {
   constructor(props) {
     super(props);
 
+    if (isLoggedIn) {
+      route(PATH_FEED, true);
+    }
+
     this.state = {
       email: "",
       password: "",
     };
+
+    this._handleChange = this._handleChange.bind(this);
+    this._confirm = this._confirm.bind(this);
+    this._saveUserData = this._saveUserData.bind(this);
+    this._formSubmit = this._formSubmit.bind(this);
   }
 
   _handleChange(e, { name, value }) {
@@ -88,7 +90,7 @@ class LoginPage extends Component {
                         iconPosition="left"
                         placeholder="E-mail address"
                         autoFocus="on"
-                        onChange={this.handleChange}
+                        onChange={this._handleChange}
                       />
                       <Form.Input
                         fluid
@@ -97,7 +99,7 @@ class LoginPage extends Component {
                         iconPosition="left"
                         placeholder="Password"
                         type="password"
-                        onChange={this.handleChange}
+                        onChange={this._handleChange}
                       />
 
                       <Button color="blue" fluid size="large">

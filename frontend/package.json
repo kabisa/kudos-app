@@ -27,8 +27,8 @@
   },
   "dependencies": {
     "apollo-boost": "^0.1.17",
-    "axios": "^0.18.0",
-    "fastclick": "^1.0.6",
+    "apollo-link-context": "^1.0.9",
+    "apollo-link-http": "^1.5.5",
     "graphql": "^14.0.2",
     "graphql-tag": "^2.10.0",
     "history": "^4.6.3",
