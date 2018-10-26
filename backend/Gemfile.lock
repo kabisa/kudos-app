@@ -78,14 +78,14 @@ GEM
     ffi (1.9.25)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
-    graphlient (0.3.3)
-      faraday
-      faraday_middleware
-      graphql-client
     graphdoc-ruby (0.1.0)
       activesupport (>= 4.2.0)
       bundler
       rack
+    graphlient (0.3.3)
+      faraday
+      faraday_middleware
+      graphql-client
     graphql (1.8.11)
     graphql-batch (0.3.10)
       graphql (>= 0.8, < 2)
@@ -266,8 +266,8 @@ DEPENDENCIES
   dotenv-rails (~> 2.5)
   factory_bot_rails (~> 4.8, >= 4.8.2)
   faker (~> 1.9, >= 1.9.1)
-  graphlient (~> 0.3.3)
   graphdoc-ruby (~> 0.1.0)
+  graphlient (~> 0.3.3)
   graphql (~> 1.8, >= 1.8.10)
   graphql-batch (~> 0.3.10)
   graphql_playground-rails (~> 2.0, >= 2.0.1)
