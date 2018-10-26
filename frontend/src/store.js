@@ -5,12 +5,6 @@ import freeze from "redux-freeze";
 
 import rootReducer from "./reducers";
 
-import ApolloClient from "apollo-boost";
-
-const client = new ApolloClient({
-  uri: "https://graphql.example.com",
-});
-
 const initialState = {};
 
 const middleware = [thunk];
@@ -32,4 +26,4 @@ const store = createStore(
   composeEnhancers(applyMiddleware(...middleware))
 );
 
-export { client, store };
+export default store;

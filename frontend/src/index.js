@@ -3,11 +3,10 @@ import "./styles/shell.scss";
 import { h, render } from "preact";
 import FastClick from "fastclick";
 import { Provider } from "preact-redux";
-import { ApolloProvider } from "react-apollo";
 import { route } from "preact-router";
 
 import "src/config/sentry";
-import { store, client } from "./store";
+import store from "./store";
 import settings from "./config/settings";
 
 import { getUserInfo, setToken } from "./modules/user/actions";
@@ -30,11 +29,9 @@ const renderApp = function() {
 
   root.innerHTML = "";
   render(
-    <ApolloProvider client={client}>
-      <Provider store={store}>
-        <App />
-      </Provider>
-    </ApolloProvider>,
+    <Provider store={store}>
+      <App />
+    </Provider>,
     root
   );
 };
