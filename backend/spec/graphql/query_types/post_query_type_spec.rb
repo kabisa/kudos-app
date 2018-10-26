@@ -39,9 +39,5 @@ RSpec.describe QueryTypes::PostQueryType do
       query_result = Functions::FindById.new(Post).call(nil, args, nil)
       expect(query_result).to eq(posts.first)
     end
-
-    it "accepts an id argument, of type Int" do
-      expect(subject.fields["post"]).to accept_arguments(id: types.ID)
-    end
   end
 end
