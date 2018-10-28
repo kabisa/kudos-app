@@ -1,11 +1,12 @@
 # frozen_string_literal: true
 
 RSpec.describe Mutations::UserMutation, ":createUser" do
+  name = Faker::Name.first_name
   args = {
-    name: Faker::Name.first_name,
+    name: name,
     authProvider: {
       credentials: {
-        email: Faker::Internet.email,
+        email: "#{name.downcase}@example.com",
         password: "password"
       }
     }
