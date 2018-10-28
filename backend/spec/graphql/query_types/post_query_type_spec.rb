@@ -13,8 +13,8 @@ RSpec.describe QueryTypes::PostQueryType do
     end
 
     it "returns all created posts" do
-      args = {}
-      query_result = subject.fields["postsConnection"].resolve(nil, args, nil)
+      args = { order_by: "created_at desc" }
+      query_result = Functions::FindAll.new(Post).call(nil, args, nil)
 
       posts.each do |post|
         expect(query_result.to_a).to include(post)

@@ -1,10 +1,8 @@
 # frozen_string_literal: true
 
-require "graphlient"
-
 RSpec.describe Connections::PostsConnection do
-  # avail type definer in our tests
   types = GraphQL::Define::TypeDefiner.instance
+
   let!(:users) { create_list(:user, 3) }
   let!(:posts) { create_list(:post, 3, sender: users.first, receivers: [users.second, users.last]) }
 
@@ -15,7 +13,7 @@ RSpec.describe Connections::PostsConnection do
   end
 
   it "returns the number of nodes" do
-    response = client.query do
+    query_result = client.query do
       query do
         postsConnection do
           totalCount
@@ -23,6 +21,6 @@ RSpec.describe Connections::PostsConnection do
       end
     end
 
-    expect(response.data.posts_connection.total_count).to eq(Post.count)
+    expect(query_result.data.posts_connection.total_count).to eq(Post.count)
   end
 end

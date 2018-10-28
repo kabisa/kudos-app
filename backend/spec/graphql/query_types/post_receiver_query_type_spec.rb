@@ -9,7 +9,7 @@ RSpec.describe QueryTypes::PostReceiverQueryType do
 
   describe "querying all posts receivers" do
     it "has a :posts_receivers that returns a PostReceiver type" do
-      expect(subject).to have_field(:postReceivers).that_returns(!types[Types::PostReceiverType])
+      expect(subject).to have_field(:postReceivers).that_returns(types[Types::PostReceiverType])
     end
 
     it "returns all our created posts" do
