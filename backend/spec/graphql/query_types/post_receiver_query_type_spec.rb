@@ -16,12 +16,10 @@ RSpec.describe QueryTypes::PostReceiverQueryType do
       query_result = subject.fields["postReceivers"].resolve(nil, nil, nil)
       post_receivers = PostReceiver.all
 
-      # ensure that each of our postreceivers is returned
       post_receivers.each do |post_receiver|
         expect(query_result.to_a).to include(post_receiver)
       end
 
-      # we can also check that the number of lists returned is the one we created.
       expect(query_result.count).to eq(post_receivers.count)
     end
   end

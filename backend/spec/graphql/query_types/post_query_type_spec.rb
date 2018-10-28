@@ -8,32 +8,41 @@ RSpec.describe QueryTypes::PostQueryType do
   let!(:posts) { create_list(:post, 3, sender: users.first, receivers: [users.second, users.last]) }
 
   describe "querying a specific post by id" do
+    it "has :post that returns a Post type" do
+      expect(subject).to have_field(:post).that_returns(Types::PostType)
+    end
+
     it "returns the queried post" do
-      # set the id of the first post as the ID
       id = posts.first.id
       args = { id: id }
       query_result = subject.fields["post"].resolve(nil, args, nil)
 
-      # we should only get the first user from the db.
       expect(query_result).to eq(posts.first)
+    end
+
+    it "accepts an id argument, of type Int" do
+      expect(subject.fields["post"]).to accept_arguments(id: types.ID)
     end
   end
 
   describe "querying all posts" do
-    it "has a :posts that returns a Post type" do
-      expect(subject).to have_field(:posts).that_returns(!types[Types::PostType])
+    it "has :postsConnection field that returns a Post type" do
+      expect(subject).to have_field(:postsConnection).that_returns(Connections::PostsConnection)
     end
 
-    it "returns all our created posts" do
-      query_result = subject.fields["posts"].resolve(nil, nil, nil)
+    it "returns all created posts" do
+      args = {}
+      query_result = subject.fields["postsConnection"].resolve(nil, args, nil)
 
-      # ensure that each of our posts is returned
       posts.each do |post|
         expect(query_result.to_a).to include(post)
       end
 
-      # we can also check that the number of lists returned is the one we created.
       expect(query_result.count).to eq(posts.count)
+    end
+
+    it "accepts a orderBy argument, of type String" do
+      expect(subject.fields["postsConnection"]).to accept_arguments(orderBy: types.String)
     end
   end
 end
