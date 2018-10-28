@@ -4,7 +4,7 @@ FactoryBot.define do
   factory :post do
     sender { }
     receivers { [] }
-    message { Faker::Company.bs }
+    message { Faker::ChuckNorris.fact }
     kudos { rand(1..500) }
   end
 end
