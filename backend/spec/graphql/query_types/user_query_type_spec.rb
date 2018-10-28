@@ -20,7 +20,7 @@ RSpec.describe QueryTypes::UserQueryType do
 
   describe "querying all users" do
     it "has a :users that returns a User type" do
-      expect(subject).to have_field(:users).that_returns(!types[Types::UserType])
+      expect(subject).to have_field(:users).that_returns(types[Types::UserType])
     end
 
     it "returns all our created users" do

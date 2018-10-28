@@ -31,7 +31,7 @@ RSpec.describe QueryTypes::PostQueryType do
     end
 
     it "returns all created posts" do
-      args = {}
+      args = { order_by: "created_at desc" }
       query_result = subject.fields["postsConnection"].resolve(nil, args, nil)
 
       posts.each do |post|

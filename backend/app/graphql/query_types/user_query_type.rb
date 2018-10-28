@@ -5,12 +5,8 @@ module QueryTypes
     name "UserQueryType"
     description "The user query type"
 
-    field :users, !types[Types::UserType] do
-      description "Retrieve all users"
-      resolve ->(obj, args, ctx) {
-        User.all
-      }
-    end
+    # Retrieve all users
+    field :users, types[Types::UserType], function: Functions::FindAll.new(User)
 
     field :user, Types::UserType do
       description "Retrieve a user by id"
