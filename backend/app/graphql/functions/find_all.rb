@@ -10,10 +10,11 @@ class Functions::FindAll < GraphQL::Function
   description "Retrieve all resources"
 
   def call(_obj, args, _ctx)
-    if !args.nil?
-      @model_class.all.order(args[:order_by]) if args[:order_by]
-    else
-      @model_class.all
-    end
+    return @model_class.all if args.keys.empty?
+
+    result = @model_class.all
+    result = result.order(args[:order]) if args[:order]
+
+    result
   end
 end

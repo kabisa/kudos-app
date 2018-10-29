@@ -13,7 +13,8 @@ RSpec.describe QueryTypes::PostReceiverQueryType do
     end
 
     it "returns all our created posts" do
-      query_result = subject.fields["postReceivers"].resolve(nil, nil, nil)
+      args = {}
+      query_result = subject.fields["postReceivers"].resolve(nil, args, nil)
       post_receivers = PostReceiver.all
 
       post_receivers.each do |post_receiver|

@@ -24,7 +24,8 @@ RSpec.describe QueryTypes::UserQueryType do
     end
 
     it "returns all our created users" do
-      query_result = subject.fields["users"].resolve(nil, nil, nil)
+      args = {}
+      query_result = subject.fields["users"].resolve(nil, args, nil)
 
       # ensure that each of our users is returned
       users.each do |user|
