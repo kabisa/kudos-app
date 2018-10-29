@@ -12,12 +12,7 @@ module QueryTypes
       }
     end
 
-    field :user, Types::UserType do
-      description "Retrieve a user by id"
-      argument :id, types.ID, "The ID of the user to retrieve"
-      resolve ->(obj, args, ctx) {
-        User.find(args[:id])
-      }
-    end
+    # find user by id
+    field :user, Types::UserType, function: Functions::FindById.new(User)
   end
 end
