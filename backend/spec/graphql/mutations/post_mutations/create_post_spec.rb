@@ -6,7 +6,7 @@ RSpec.describe Mutations::PostMutation, ":createPost" do
   it "creates a new post" do
     args = {
         receivers: [users.last.name],
-        message: Faker::Company.bs,
+        message: Faker::ChuckNorris.fact,
         kudos: rand(0..500)
     }
     ctx = { current_user: users.first }
@@ -19,7 +19,7 @@ RSpec.describe Mutations::PostMutation, ":createPost" do
   it "raises an ExecutionError if user is not authenticated" do
     args = {
       receivers: [users.last.name],
-      message: Faker::Company.bs,
+      message: Faker::ChuckNorris.fact,
       kudos: rand(0..500)
     }
     ctx = { current_user: nil }
