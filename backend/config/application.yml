@@ -1,5 +1,6 @@
 defaults: &defaults
   token_expiration_time: <%= 1.month %>
+  faker_seed: 525550554190270531726345643
 
 development:
   <<: *defaults
