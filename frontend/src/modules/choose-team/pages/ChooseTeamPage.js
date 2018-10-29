@@ -4,20 +4,15 @@ import { Divider } from "semantic-ui-react";
 import PropTypes from "prop-types";
 
 import { Toolbar } from "../../../components/navigation";
-import { PATH_LOGIN } from "../../../routes";
 import { Invite, TeamRow } from "./components";
-import { route } from "preact-router";
+import { isLoggedIn } from "../../support";
 
 import s from "./ChooseTeamPage.scss";
 
 export class ChooseTeamPage extends Component {
   constructor(props) {
     super(props);
-
-    // Check login
-    if (!props.isLoggedIn) {
-      route(PATH_LOGIN, true);
-    }
+    isLoggedIn();
   }
 
   render() {
