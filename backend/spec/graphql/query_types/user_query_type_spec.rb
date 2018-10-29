@@ -6,18 +6,6 @@ RSpec.describe QueryTypes::UserQueryType do
 
   let!(:users) { create_list(:user, 3) }
 
-  describe "querying a specific user by id" do
-    it "returns the queried user" do
-      # set the id of the first user as the ID
-      id = users.first.id
-      args = { id: id }
-      query_result = subject.fields["user"].resolve(nil, args, nil)
-
-      # we should only get the first user from the db.
-      expect(query_result).to eq(users.first)
-    end
-  end
-
   describe "querying all users" do
     it "has a :users that returns a User type" do
       expect(subject).to have_field(:users).that_returns(types[Types::UserType])
@@ -34,6 +22,15 @@ RSpec.describe QueryTypes::UserQueryType do
 
       # we can also check that the number of lists returned is the one we created.
       expect(query_result.count).to eq(users.count)
+    end
+  end
+
+  describe "querying a specific user by id" do
+    it "returns the queried user" do
+      id = users.first.id
+      args = { id: id }
+      query_result = Functions::FindById.new(User).call(nil, args, nil)
+      expect(query_result).to eq(users.first)
     end
   end
 end

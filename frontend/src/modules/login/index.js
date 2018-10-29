@@ -1,3 +1,3 @@
-export { default as LoginPage } from "./pages/LoginPage";
-export { default as RegisterPage } from "./pages/RegisterPage";
-export { default as ForgotPasswordPage } from "./pages/ResetPasswordPage";
+export { default as LoginPage } from "./LoginPage";
+export { default as RegisterPage } from "./RegisterPage";
+export { default as ForgotPasswordPage } from "./ForgotPasswordPage";
