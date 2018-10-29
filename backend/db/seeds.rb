@@ -5,8 +5,8 @@ require "database_cleaner"
 DatabaseCleaner.clean_with(:truncation)
 
 10.times do |i|
-  User.create(name: Faker::Name.first_name,
-              email: Faker::Internet.email,
+  User.create(name: Faker::Name.unique.first_name,
+              email: Faker::Internet.unique.email,
               password: "fakepassword",
               password_confirmation: "fakepassword"
   )
