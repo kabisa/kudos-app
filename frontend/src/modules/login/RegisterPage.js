@@ -28,10 +28,10 @@ class RegisterPage extends Component {
       password: "",
     };
 
-    this._handleChange = this._handleChange.bind(this);
-    this._confirm = this._confirm.bind(this);
-    this._saveUserData = this._saveUserData.bind(this);
-    this._formSubmit = this._formSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.confirm = this.confirm.bind(this);
+    this.saveUserData = this.saveUserData.bind(this);
+    this.formSubmit = this.formSubmit.bind(this);
   }
 
   _handleChange(e, { name, value }) {
@@ -40,7 +40,7 @@ class RegisterPage extends Component {
 
   _confirm(data) {
     if (data.createUser) {
-      this._saveUserData(data.createUser.token);
+      this.saveUserData(data.createUser.token);
       route(PATH_FEED, true);
     }
   }
@@ -61,7 +61,7 @@ class RegisterPage extends Component {
     return (
       <Mutation
         mutation={MUTATION_REGISTER}
-        onCompleted={data => this._confirm(data)}
+        onCompleted={data => this.confirm(data)}
       >
         {(createUser, { error }) => {
           return (
@@ -80,7 +80,7 @@ class RegisterPage extends Component {
                     <Form
                       size="large"
                       error={error}
-                      onSubmit={e => this._formSubmit(e, createUser)}
+                      onSubmit={e => this.formSubmit(e, createUser)}
                     >
                       <Segment stacked>
                         <Form.Input
@@ -90,7 +90,7 @@ class RegisterPage extends Component {
                           iconPosition="left"
                           placeholder="Name"
                           autoFocus="on"
-                          onChange={this._handleChange}
+                          onChange={this.handleChange}
                         />
                         <Form.Input
                           fluid
@@ -98,7 +98,7 @@ class RegisterPage extends Component {
                           name="email"
                           iconPosition="left"
                           placeholder="E-mail address"
-                          onChange={this._handleChange}
+                          onChange={this.handleChange}
                         />
                         <Form.Input
                           fluid
@@ -107,7 +107,7 @@ class RegisterPage extends Component {
                           iconPosition="left"
                           placeholder="Password"
                           type="password"
-                          onChange={this._handleChange}
+                          onChange={this.handleChange}
                         />
 
                         <Button color="blue" fluid size="large">

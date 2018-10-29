@@ -30,10 +30,10 @@ class LoginPage extends Component {
       password: "",
     };
 
-    this._handleChange = this._handleChange.bind(this);
-    this._confirm = this._confirm.bind(this);
-    this._saveUserData = this._saveUserData.bind(this);
-    this._formSubmit = this._formSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.confirm = this.confirm.bind(this);
+    this.saveUserData = this.saveUserData.bind(this);
+    this.formSubmit = this.formSubmit.bind(this);
   }
 
   _handleChange(e, { name, value }) {
@@ -42,7 +42,7 @@ class LoginPage extends Component {
 
   _confirm(data) {
     if (data.signInUser) {
-      this._saveUserData(data.signInUser.token);
+      this.saveUserData(data.signInUser.token);
       route(PATH_FEED, true);
     }
   }
@@ -63,7 +63,7 @@ class LoginPage extends Component {
     return (
       <Mutation
         mutation={MUTATION_LOGIN}
-        onCompleted={data => this._confirm(data)}
+        onCompleted={data => this.confirm(data)}
       >
         {(signInUser, { data }) => {
           return (
@@ -80,7 +80,7 @@ class LoginPage extends Component {
                   <Form
                     size="large"
                     error
-                    onSubmit={e => this._formSubmit(e, signInUser)}
+                    onSubmit={e => this.formSubmit(e, signInUser)}
                   >
                     <Segment stacked>
                       <Form.Input
@@ -90,7 +90,7 @@ class LoginPage extends Component {
                         iconPosition="left"
                         placeholder="E-mail address"
                         autoFocus="on"
-                        onChange={this._handleChange}
+                        onChange={this.handleChange}
                       />
                       <Form.Input
                         fluid
@@ -99,7 +99,7 @@ class LoginPage extends Component {
                         iconPosition="left"
                         placeholder="Password"
                         type="password"
-                        onChange={this._handleChange}
+                        onChange={this.handleChange}
                       />
 
                       <Button color="blue" fluid size="large">
