@@ -9,7 +9,7 @@ module Mutations
       description "Create a new post"
       argument :message, !types.String
       argument :kudos, !types.Int
-      argument :receivers, !types[types.String]
+      argument :receivers, !types[types.Int]
 
       # define return type
       type Types::PostType
@@ -23,7 +23,7 @@ module Mutations
           message: args[:message],
           kudos: args[:kudos],
           sender: ctx[:current_user],
-          receivers: User.where(name: args[:receivers])
+          receivers: User.find(args[:receivers])
         )
       end
     end

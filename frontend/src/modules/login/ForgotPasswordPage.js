@@ -32,22 +32,22 @@ class ForgotPasswordPage extends Component {
     this.formSubmit = this.formSubmit.bind(this);
   }
 
-  _handleChange(e, { name, value }) {
+  handleChange(e, { name, value }) {
     this.setState({ [name]: value });
   }
 
-  _confirm(data) {
+  confirm(data) {
     if (data.createUser) {
       this.saveUserData(data.createUser.token);
       route(PATH_FEED, true);
     }
   }
 
-  _saveUserData(token) {
+  saveUserData(token) {
     localStorage.setItem(settings.LOCALSTORAGE_TOKEN, token);
   }
 
-  _formSubmit(e, createUser) {
+  formSubmit(e, createUser) {
     e.preventDefault();
     const { name, email, password } = this.state;
     createUser({
