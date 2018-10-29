@@ -10,11 +10,12 @@ import * as routes from "./routes";
 import { LoginPage, ForgotPasswordPage, RegisterPage } from "./modules/login";
 import { FeedPage, AddTransactionPage } from "./modules/feed";
 import { NotificationsPage } from "./modules/notifications";
-import { UserPage, ResetPasswordPage } from "./modules/user";
+// import { UserPage, ResetPasswordPage } from "./modules/user";
+import { UserPage } from "./modules/user";
 import { SettingsPage } from "./modules/settings";
 import { StatisticsPage } from "./modules/statistics";
-import { ChooseTeamPage } from "./modules/choose-team";
-import { CommentPage } from "./modules/comments";
+// import { ChooseTeamPage } from "./modules/choose-team";
+// import { CommentPage } from "./modules/comments";
 
 const AnimationRouter = PageTransitionSupport.augmentRouter(
   PreactRouter,
@@ -28,9 +29,9 @@ const Routes = [
   <StatisticsPage path={routes.PATH_STATISTICS} />,
   <SettingsPage path={routes.PATH_SETTINGS} />,
   <AddTransactionPage path={routes.PATH_ADD_TRANSACTION} />,
-  <ResetPasswordPage path={routes.PATH_RESET_PASSWORD} />,
-  <ChooseTeamPage path={routes.PATH_CHOOSE_TEAM} />,
-  <CommentPage path="/comments/:comment" />,
+  // <ResetPasswordPage path={routes.PATH_RESET_PASSWORD} />,
+  // <ChooseTeamPage path={routes.PATH_CHOOSE_TEAM} />,
+  // <CommentPage path="/comments/:comment" />,
 
   <ForgotPasswordPage path={routes.PATH_FORGOT_PASSWORD} />,
   <RegisterPage path={routes.PATH_REGISTER} />,

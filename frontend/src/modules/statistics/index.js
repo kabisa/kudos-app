@@ -1,1 +1,1 @@
-export { default as StatisticsPage } from "./pages/StatisticsPage";
+export { default as StatisticsPage } from "./StatisticsPage";
